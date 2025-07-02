@@ -1,18 +1,18 @@
-# Benchmark Framework cho Phân Loại Ảnh
+# 📊 Benchmark Framework for Image Classification
 
-Framework này cung cấp các công cụ để đánh giá (benchmark) nhiều mô hình phân loại ảnh trên các tập dữ liệu khác nhau. Nó hỗ trợ cả mô hình TensorFlow/Keras và PyTorch, cho phép so sánh dễ dàng giữa các kiến trúc và framework khác nhau.
+This framework provides tools to benchmark multiple image classification models on various datasets. It supports both TensorFlow/Keras and PyTorch models, allowing for easy comparison across different architectures and frameworks.
 
-## Tính Năng
+## ⭐ Features
 
-- Liệt kê các tập dữ liệu và mô hình có sẵn
-- Tải xuống và giải nén tập dữ liệu từ máy chủ từ xa
-- Huấn luyện và đánh giá nhiều mô hình trên tập dữ liệu được chỉ định
-- Vẽ biểu đồ lịch sử huấn luyện để so sánh trực quan
-- Thu thập và hiển thị các chỉ số hiệu suất dưới dạng bảng
+- List available datasets and models
+- Download and extract datasets from a remote server
+- Train and evaluate multiple models on a specified dataset
+- Plot training history for visual comparison
+- Collect and display performance metrics in a tabular format
 
-## Yêu Cầu
+## 🛠️ Requirements
 
-Để sử dụng framework này, hãy đảm bảo bạn đã cài đặt các thư viện Python sau:
+To use this framework, ensure you have the following Python libraries installed:
 
 - Python 3.6+
 - TensorFlow 2.x
@@ -26,46 +26,46 @@ Framework này cung cấp các công cụ để đánh giá (benchmark) nhiều 
 - NumPy
 - Matplotlib
 
-Bạn có thể cài đặt các gói cần thiết bằng pip:
+You can install the required packages using pip:
 
 ```bash
 pip install tensorflow keras torch torchvision huggingface_hub timm scikit-learn pandas numpy matplotlib
 ```
 
-## Bắt Đầu Nhanh
+## 🚀 Quick Start
 
-1. **Nhập framework:**
+1. **Import the framework:**
 
 ```python
 import framework
 ```
 
-2. **Liệt kê các tài nguyên có sẵn:**
+2. **List available resources:**
 
 ```python
 resources = framework.list_available_resources()
 print(resources)
 ```
 
-Lệnh này sẽ hiển thị danh sách các tập dữ liệu và mô hình có thể sử dụng với framework.
+This will display the datasets and models available for use with the framework.
 
-3. **Tải xuống và giải nén tập dữ liệu:**
+3. **Download and extract datasets:**
 
 ```python
 paths = framework.download_and_extract_zips(['dataset_name'], download_dir='datasets', extract_dir='data')
 ```
 
-Thay `'dataset_name'` bằng tên của tập dữ liệu bạn muốn sử dụng. Tập dữ liệu sẽ được tải xuống và giải nén vào các thư mục được chỉ định.
+Replace `'dataset_name'` with the name of the dataset you wish to use. The dataset will be downloaded and extracted to the specified directories.
 
-4. **Chọn các mô hình để đánh giá:**
+4. **Select models to benchmark:**
 
 ```python
 models = ['model1', 'model2', ...]
 ```
 
-Chọn các mô hình bạn muốn huấn luyện và đánh giá từ danh sách các mô hình được hỗ trợ.
+Choose the models you want to train and evaluate from the list of supported models.
 
-5. **Chạy benchmark:**
+5. **Run the benchmark:**
 
 ```python
 metrics_df = framework.benchmark_model(
@@ -80,61 +80,61 @@ metrics_df = framework.benchmark_model(
 )
 ```
 
-Hàm này sẽ huấn luyện từng mô hình trên tập dữ liệu, đánh giá hiệu suất của chúng và trả về một DataFrame chứa kết quả.
+This function will train each model on the dataset, evaluate their performance, and return a DataFrame with the results.
 
-6. **Xem kết quả:**
+6. **View the results:**
 
 ```python
 print(metrics_df)
 ```
 
-DataFrame sẽ chứa các chỉ số hiệu suất như precision, recall, F1-score và accuracy cho từng mô hình.
+The DataFrame will contain performance metrics such as precision, recall, F1-score, and accuracy for each model.
 
-## Các Hàm Chính
+## ⚙️ Main Functions
 
 ### `list_available_resources()`
 
-Trả về một từ điển chứa các tập dữ liệu và mô hình có sẵn để sử dụng với framework.
+Returns a dictionary containing the available datasets and models for use with the framework.
 
 ### `download_and_extract_zips(selected_datasets, download_dir='datasets', extract_dir='data')`
 
-Tải xuống và giải nén các tập dữ liệu được chỉ định từ máy chủ từ xa.
+Downloads and extracts the specified datasets from a remote server.
 
-- **selected_datasets**: Danh sách tên các tập dữ liệu cần tải.
-- **download_dir**: Thư mục để lưu các file zip.
-- **extract_dir**: Thư mục để giải nén tập dữ liệu.
+- **selected_datasets**: List of dataset names to download.
+- **download_dir**: Directory to save the zip files.
+- **extract_dir**: Directory to extract the datasets.
 
-Trả về danh sách các đường dẫn đến các tập dữ liệu đã được giải nén.
+Returns a list of paths to the extracted datasets.
 
 ### `benchmark_model(...)`
 
-Huấn luyện và đánh giá nhiều mô hình trên một tập dữ liệu đã cho.
+Trains and evaluates multiple models on a given dataset.
 
-**Tham số:**
+**Parameters:**
 
-- `models_to_train`: Danh sách tên các mô hình cần huấn luyện.
-- `dataset_path`: Đường dẫn đến thư mục tập dữ liệu.
-- `target_size`: Tuple kích thước ảnh cần resize (chiều cao, chiều rộng).
-- `color_mode`: 'rgb' hoặc 'grayscale'.
-- `class_mode`: 'categorical', 'binary', v.v.
-- `batch_size`: Kích thước batch cho huấn luyện.
-- `shuffle`: Có xáo trộn dữ liệu hay không.
-- `seed`: Hạt giống ngẫu nhiên để tái tạo kết quả.
-- `validation_split`: Tỷ lệ dữ liệu dùng cho validation.
-- `test_split`: Tỷ lệ dữ liệu dùng cho kiểm tra.
-- `num_workers`: Số lượng worker để tải dữ liệu.
-- `input_shape`: Hình dạng đầu vào cho các mô hình.
-- `epochs`: Số epoch tối đa để huấn luyện.
-- `patience`: Độ kiên nhẫn cho early stopping.
-- `learning_rate`: Tốc độ học của optimizer.
-- `fine_tune`: Có tinh chỉnh các lớp pretrained hay không.
-- `checkpoint_path`: Đường dẫn để lưu checkpoint của mô hình.
+- `models_to_train`: List of model names to train.
+- `dataset_path`: Path to the dataset directory.
+- `target_size`: Tuple of image resize dimensions (height, width).
+- `color_mode`: 'rgb' or 'grayscale'.
+- `class_mode`: 'categorical', 'binary', etc.
+- `batch_size`: Batch size for training.
+- `shuffle`: Whether to shuffle the data.
+- `seed`: Random seed for reproducibility.
+- `validation_split`: Ratio of data to use for validation.
+- `test_split`: Ratio of data to use for testing.
+- `num_workers`: Number of workers for data loading.
+- `input_shape`: Input shape for the models.
+- `epochs`: Maximum number of training epochs.
+- `patience`: Patience for early stopping.
+- `learning_rate`: Learning rate for the optimizer.
+- `fine_tune`: Whether to fine-tune pretrained layers.
+- `checkpoint_path`: Path to save model checkpoints.
 
-Trả về một DataFrame pandas chứa các chỉ số hiệu suất cho từng mô hình.
+Returns a pandas DataFrame containing performance metrics for each model.
 
-## Các Mô Hình Được Hỗ Trợ
+## 🧠 Supported Models
 
-Framework hỗ trợ các mô hình sau:
+The framework supports the following models:
 
 - **EfficientNetB0**
 - **Xception**
@@ -144,44 +144,44 @@ Framework hỗ trợ các mô hình sau:
 - **DenseNet121**
 - **VGG16**
 - **ConvNeXtBase**
-- **CNN** (mô hình CNN tùy chỉnh)
+- **CNN** (custom CNN model)
 - **ViT_B16** (Vision Transformer)
 - **EfficientNetV2L**
 - **CoAtNet**
 
-Các mô hình như **ViT_B16** và **CoAtNet** được triển khai bằng PyTorch và TIMM, trong khi các mô hình khác dựa trên TensorFlow/Keras.
+Models like **ViT_B16** and **CoAtNet** are implemented using PyTorch and TIMM, while others are based on TensorFlow/Keras.
 
-## Giải Thích Kết Quả
+## 📊 Result Explanation
 
-Hàm `benchmark_model` trả về một DataFrame pandas với các cột sau:
+The `benchmark_model` function returns a pandas DataFrame with the following columns:
 
-- **Mô hình**: Tên mô hình
-- **Số vòng lặp thực tế**: Số epoch thực tế đã huấn luyện (có thể ít hơn `epochs` do early stopping)
-- **Patience**: Giá trị patience dùng cho early stopping
-- **Precision (%)**: Độ chính xác trung bình có trọng số trên tập kiểm tra
-- **Recall (%)**: Độ nhạy trung bình có trọng số trên tập kiểm tra
-- **F1-score (%)**: Điểm F1 trung bình có trọng số trên tập kiểm tra
-- **Accuracy (%)**: Độ chính xác trên tập kiểm tra
-- **Thời gian/epoch (s)**: Thời gian trung bình mỗi epoch tính bằng giây
+- **Model**: Name of the model
+- **Actual Epochs**: Number of epochs actually trained (may be less than `epochs` due to early stopping)
+- **Patience**: Patience value used for early stopping
+- **Precision (%)**: Weighted average precision on the test set
+- **Recall (%)**: Weighted average recall on the test set
+- **F1-score (%)**: Weighted average F1-score on the test set
+- **Accuracy (%)**: Accuracy on the test set
+- **Time per Epoch (s)**: Average time per epoch in seconds
 
-Các chỉ số này cho phép so sánh toàn diện về hiệu suất và hiệu quả huấn luyện của các mô hình khác nhau.
+These metrics provide a comprehensive comparison of the performance and training efficiency of different models.
 
-## Biểu Đồ Lịch Sử Huấn Luyện
+## 📈 Training History Plots
 
-Sau khi chạy benchmark, framework tự động tạo các biểu đồ so sánh lịch sử huấn luyện của tất cả các mô hình. Các biểu đồ này bao gồm:
+After running the benchmark, the framework automatically generates plots comparing the training history of all models. These plots include:
 
-- **Loss qua Epoch**: Loss huấn luyện và validation cho từng mô hình.
-- **Accuracy qua Epoch**: Accuracy huấn luyện và validation cho từng mô hình.
+- **Loss over Epochs**: Training and validation loss for each model.
+- **Accuracy over Epochs**: Training and validation accuracy for each model.
 
-Những biểu đồ này giúp hiểu cách mỗi mô hình học theo thời gian và so sánh hành vi hội tụ của chúng.
+These visualizations help understand how each model learns over time and compare their convergence behavior.
 
-## Ví Dụ
+## 📝 Example
 
-Để xem ví dụ đầy đủ, hãy tham khảo notebook `Run_framework.ipynb`, trong đó trình bày cách sử dụng framework từng bước.
+For a complete example, refer to the `Run_framework.ipynb` notebook, which demonstrates how to use the framework step-by-step.
 
-## Ghi Chú
+## 📌 Notes
 
-- Đảm bảo hệ thống của bạn có đủ tài nguyên (CPU/GPU, bộ nhớ) để xử lý việc huấn luyện, đặc biệt với các mô hình và tập dữ liệu lớn.
-- Framework sử dụng early stopping dựa trên validation loss để tránh overfitting và tiết kiệm thời gian tính toán.
-- Đối với các mô hình PyTorch, framework tự động chọn thiết bị phù hợp (CPU hoặc GPU).
-- Cả feature extraction và fine-tuning đều được hỗ trợ cho các mô hình pretrained bằng cách cài đặt tham số `fine_tune`.
+- Ensure your system has sufficient resources (CPU/GPU, memory) to handle the training, especially with large models and datasets.
+- The framework uses early stopping based on validation loss to prevent overfitting and save computation time.
+- For PyTorch models, the framework automatically selects the appropriate device (CPU or GPU).
+- Both feature extraction and fine-tuning are supported for pretrained models by setting the `fine_tune` parameter.
