@@ -109,7 +109,7 @@ def predict_image():
     output_data = interpreter.get_tensor(output_details[0]['index'])
     prediction = np.argmax(output_data)
     label = label_names[prediction]
-    print(f"Dự đoán: {label} (chỉ số: {prediction})")
+    print(f"Dự đoán: {label}")
     
     # Hiển thị lên LCD
     lcd.clear()
@@ -298,7 +298,7 @@ try:
         distance = get_distance()
         print(f"Khoảng cách đo được: {distance:.2f} cm")
 
-        if distance < 25:
+        if distance < 27:
             print("Phát hiện vật thể gần!")
             picam2.start()
             time.sleep(1)
